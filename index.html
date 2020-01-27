@@ -1,50 +1,288 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+    <title>Хакатон | AR ОНТИ</title>
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
 
-		<script src="js/reveal.js"></script>
+    <style>
+        .center tr td {
+            vertical-align: middle;
+            text-align: center;
+        }
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				hash: true,
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/highlight/highlight.js' },
-					{ src: 'plugin/notes/notes.js', async: true }
-				]
-			});
-		</script>
-	</body>
+        .borderless {
+            border: none !important;
+        }
+
+        table thead th {
+            text-align: center !important;
+        }
+    </style>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1>Задача хакатона</h1>
+        </section>
+        <section>
+            <h3>Общая постановка</h3>
+            <p align="left">Реализовать игру <b>“Вторжение инопланетян”</b> в смешанной реальности. Разработка должна
+                включать
+            <ul>
+                <li>механику игры,</li>
+                <li>дизайн,</li>
+                <li>автоматическую калибровку поля для <b>AR-Stand</b>’a.</li>
+            </ul>
+            </p>
+        </section>
+        <section>
+            <section>
+                <h2>AR–Stand</h2>
+            </section>
+            <section>
+                <table>
+                    <tr>
+                        <td style="width: 30%; vertical-align: middle; text-align: center; font-size: .6em">
+                            <img src="img/stand/markers.png" alt="Маркеры">
+                            <p>Кубики — игровые объекты</p>
+                        </td>
+                        <td width="70%" align="center">
+                            <img src="img/stand/stand.png" alt="Конструкция стенда">
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Игра</h2>
+            </section>
+            <section>
+                <h3>Легенда</h3>
+                <table class="center">
+                    <tr>
+                        <td>
+                            <img src="img/legend/field.png" alt="Поле игры">
+                            Пример карты города N
+                        </td>
+                        <td>
+                            <img src="img/legend/humanoid.png" alt="Гуманоид" class="borderless"
+                                 style="margin: 0 !important;">
+                            — пример человека. Направление острого угла соответствует взгляду человека.
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            <section>
+                <h3>Легенда</h3>
+                <table class="center">
+                    <tr>
+                        <td width="45%"><img src="img/legend/mirno.png" alt="Мирное движение"></td>
+                        <td>Есть некоторый город N. В нем живут, беспечные мирные жители, каждый день они ходят на
+                            работу, в кино, в школу — ведут спокойную жизнь.
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            <section>
+                <h3>Легенда</h3>
+                <table class="center">
+                    <tr>
+                        <td width="45%"><img src="img/legend/spasat.png" alt="Спасательный корабль"></td>
+                        <td style="font-size: .8em">
+                            <p>Однажды по новостям передали, что на город напали инопланетяне. Где-то в городе есть
+                                спасительный корабль, который увезет всех из города через 5 часов. За это время всем
+                                людям нужно его найти.</p>
+                            <p>В панике люди действуют хаотично и бегают по городу как попало. Поэтому, корабль им найти
+                                сложно.</p>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            <section>
+                <h3>Легенда</h3>
+                <table class="center">
+                    <tr>
+                        <td width="45%"><img src="img/legend/ukazat.png" alt="Указатели"></td>
+                        <td style="font-size: .8em">
+                            Поэтому, чтобы помочь людям ориентироваться в хаосе, спасатели устанавливают
+                            стрелки-указатели. Они помогают людям изменить направление движения в сторону корабля.
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            <section>
+                <h3>Легенда</h3>
+                <img src="img/legend/smena_naprav.png" alt="Смена направления">
+            </section>
+        </section>
+        <section>
+            <h3>Задача игрока</h3>
+            <p>Расставить указатели таким образом, чтобы за 5 часов<b>*</b> <b>как можно больше людей оказалось на
+                корабле.</b>
+            </p>
+            <p style="font-size: .6em">* часы в данном случае условные, в реальном времени это может быть 5 сек;
+                коэфициент ускорения относительно реального времени можно задать</p>
+        </section>
+        <section>
+            <section>
+                <h3>Задачи хакатона</h3>
+                <ul>
+                    <li>Разработка механики игры;</li>
+                    <li>Разработка дизайна игры;</li>
+                    <li>Совмещение игры с AR-Стендом <em><b>или</b></em> создание mapping версии игры.</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Что включает разработка механики?</h3>
+                <p style="font-size: .9em">Запрограммировать предложенную игру. Реализовать:
+                <ul style="font-size: .8em">
+                    <li>Мирное передвижение людей;</li>
+                    <li>Хаотичное передвижение людей;</li>
+                    <li>Смену направления движения по указателям;</li>
+                    <li>Ограничение по времени на расстановку указателей;</li>
+                    <li>Подсчет и вывод очков — сколько людей удалось спасти, а сколько нет.</li>
+                </ul>
+                </p>
+            </section>
+            <section>
+                <h3>Что включает разработка дизайна?</h3>
+                <p style="font-size: .7em">Должны быть отрисованы в свободной форме все элементы игры (человечки, поле,
+                    корабль, стрелки)</p>
+                <img src="img/what/design.png" alt="Примеры поля, человечка, корабля и стрелки">
+            </section>
+            <section>
+                <h3>Что включает в себя mapping?</h3>
+                <p>Действия игры должны происходить в смешанной реальности. Должно быть реализовано:
+                <ul>
+                    <li>Автоматическая калибровка поля по расставленным маркерам;</li>
+                    <li>Проецирование поля игры по расставленным маркерам.</li>
+                </ul>
+                </p>
+            </section>
+            <section>
+                <video src=""></video>
+            </section>
+            <section>
+                <h3>Как реализовать калибровку?</h3>
+                <ol>
+                    <li>Найти маркеры, обозначающие края поля игровой зоны;</li>
+                    <li>Высветить поле игры (или инициализации);</li>
+                    <li>Найти углы поля;</li>
+                    <li>Преобразовать изображение поля таким образом, чтобы углы поля и маркеров совпали.</li>
+                </ol>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Организационная информация</h2>
+            </section>
+            <section>
+                <h3>Роли в команде</h3>
+                <ul>
+                    <li>Математик</li>
+                    <li>Специалист по компьютерному зрению</li>
+                    <li>Специалист по GameDev</li>
+                    <li>Игровой механик</li>
+                    <li>Дизайнер</li>
+                </ul>
+            </section>
+            <section style="font-size: .8em">
+                <h3>Лекции (до обеда)</h3>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Лекция</th>
+                        <th>Аудитория</th>
+                        <th>Для кого</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Компьютерное зрение на Python</td>
+                        <td>402</td>
+                        <td>Специалист по КЗ, Математик</td>
+                    </tr>
+                    <tr>
+                        <td>Мультиагентные системы в GameDev</td>
+                        <td>403</td>
+                        <td>Специалист по GameDev, Игровой механик</td>
+                    </tr>
+                    <tr>
+                        <td>Дизайн игрового мира</td>
+                        <td>406</td>
+                        <td>Дизайнер</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section style="font-size: .8em">
+                <h3>Помогаторы</h3>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Лекция</th>
+                        <th>Лектор</th>
+                        <th>Помогаторы</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Компьютерное зрение на Python</td>
+                        <td>Миша Мустакимов</td>
+                        <td>Катя Черногор,<br>Алексей Быков</td>
+                    </tr>
+                    <tr>
+                        <td>Мультиагентные системы в GameDev</td>
+                        <td>Саша Абдулов</td>
+                        <td>Петя Ширин,<br>Рома Шабанов</td>
+                    </tr>
+                    <tr>
+                        <td>Дизайн игрового мира</td>
+                        <td>Даша Куставинова</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+        </section>
+    </div>
+</div>
+
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        hash: true,
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/highlight/highlight.js'},
+            {src: 'plugin/notes/notes.js', async: true}
+        ]
+    });
+</script>
+</body>
 </html>
